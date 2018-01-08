@@ -8,19 +8,19 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="/js/main.js"></script>
 		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>API Docs - Aviator</title>
+<title>API Docs - Annopolis</title>
 <meta property="og:title" content="API Docs" />
-<meta name="description" content="Jekyll template for API documentation." />
-<meta property="og:description" content="Jekyll template for API documentation." />
+<meta name="description" content="Annotation Server" />
+<meta property="og:description" content="Annotation Server" />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Aviator" />
+<meta property="og:site_name" content="Annopolis" />
 <script type="application/ld+json">
 {"@context": "http://schema.org",
 "@type": "WebSite",
-"name": "Aviator",
+"name": "Annopolis",
 "headline": "API Docs",
-"description": "Jekyll template for API documentation.",
+"description": "Annotation Server",
 "url": "http://localhost:4000/"}</script>
 <!-- End Jekyll SEO tag -->
 
@@ -30,7 +30,7 @@
 	<body>
 		<header>
 			<h1>
-				<a href="/"><img src="/images/logo.svg" height="40" alt="Aviator logo"></a>
+				<a href="/"><img src="/images/logo.svg" height="40" alt="Annopolis logo"></a>
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 
@@ -131,19 +131,23 @@
 		</header>
 		<div class="main">
 			
-<div class="highlighter-rouge"><pre class="highlight"><code>	&lt;section class="doc-content"&gt;
-		&lt;section class="left-docs"&gt;
-			&lt;h3&gt;
-				&lt;a id="documentationgetting_started"&gt;
-					Getting Started
-					
-				&lt;/a&gt;
-			&lt;/h3&gt;
-			
 
-			&lt;p&gt;Welcome to our API.&lt;/p&gt;
-</code></pre>
-</div>
+	
+	
+
+	
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationgetting_started">
+						Getting Started
+						
+					</a>
+				</h3>
+				
+
+				<p>Welcome to our API.</p>
 
 <p>This API document is designed for those interested in developing for our platform.</p>
 
@@ -157,67 +161,64 @@
 
 <p class="error">Something bad will happen if you do this.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		&lt;/section&gt;
+			</section>
 
-		
-	&lt;/section&gt;
-
-	&lt;section class="doc-content"&gt;
-		&lt;section class="left-docs"&gt;
-			&lt;h3&gt;
-				&lt;a id="documentationauthentication"&gt;
-					Authentication
-					
-				&lt;/a&gt;
-			&lt;/h3&gt;
 			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationauthentication">
+						Authentication
+						
+					</a>
+				</h3>
+				
 
-			&lt;p&gt;You need to be authenticated for all API requests. You can generate an API key in your developer dashboard.&lt;/p&gt;
-</code></pre>
-</div>
+				<p>You need to be authenticated for all API requests. You can generate an API key in your developer dashboard.</p>
 
 <p>Add the API key to all requests as a GET parameter.</p>
 
 <p class="error">Nothing will work unless you include this API key</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		&lt;/section&gt;
+			</section>
 
-		
-			&lt;section class="right-code"&gt;
-				&lt;div title="jQuery" class="language-javascript highlighter-rouge"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://api.myapp.com/books/"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;"token"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"YOUR_APP_KEY"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;   &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;
+			
+				<section class="right-code">
+					<div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"http://api.myapp.com/books/"</span><span class="p">,</span> <span class="p">{</span> <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"YOUR_APP_KEY"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 </div>
-<p>&lt;/div&gt;</p>
 
 <div title="Curl" class="language-bash highlighter-rouge"><pre class="highlight"><code>curl http://api.myapp.com/books?token<span class="o">=</span>YOUR_APP_KEY
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>			&lt;/section&gt;
-		
-	&lt;/section&gt;
-
-	&lt;section class="doc-content"&gt;
-		&lt;section class="left-docs"&gt;
-			&lt;h3&gt;
-				&lt;a id="documentationerrors"&gt;
-					Errors
-					
-				&lt;/a&gt;
-			&lt;/h3&gt;
+				</section>
 			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationerrors">
+						Errors
+						
+					</a>
+				</h3>
+				
 
-			&lt;table&gt;
-</code></pre>
-</div>
-<thead>
+				<table>
+  <thead>
     <tr>
       <th>Code</th>
       <th>Name</th>
       <th>Description</th>
     </tr>
   </thead>
-<tbody>
+  <tbody>
     <tr>
       <td>200</td>
       <td>OK</td>
@@ -239,7 +240,7 @@
       <td>We couldn’t authenticate you</td>
     </tr>
   </tbody>
-<p>&lt;/table&gt;</p>
+</table>
 
 <p>All errors will return JSON in the following format:</p>
 
@@ -250,36 +251,34 @@
 </span></code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		&lt;/section&gt;
+			</section>
 
-		
-	&lt;/section&gt;
-
-
-
-
-	&lt;section class="doc-content"&gt;
-		&lt;section class="left-docs"&gt;
-			&lt;h3&gt;
-				&lt;a id="apibooks_list"&gt;
-					/books
-					
-						&lt;span class="endpoint get"&gt;&lt;/span&gt;
-					
-				&lt;/a&gt;
-			&lt;/h3&gt;
 			
-				&lt;p class="description"&gt;List all books&lt;/p&gt;
-			
+		</section>
+	
 
-			&lt;h6&gt;Parameters&lt;/h6&gt;&lt;dl&gt;
-</code></pre>
-</div>
-<dt>offset</dt>
-<dd>Offset the results by this amount</dd>
-<dt>limit</dt>
-<dd>Limit the number of books returned</dd>
-<p>&lt;/dl&gt;</p>
+	
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="apibooks_list">
+						/books
+						
+							<span class="endpoint get"></span>
+						
+					</a>
+				</h3>
+				
+					<p class="description">List all books</p>
+				
+
+				<h6>Parameters</h6><dl>
+  <dt>offset</dt>
+  <dd>Offset the results by this amount</dd>
+  <dt>limit</dt>
+  <dd>Limit the number of books returned</dd>
+</dl>
 
 <p class="info">This call will return a maximum of 100 books</p>
 
@@ -309,22 +308,26 @@
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		&lt;/section&gt;
+			</section>
 
-		
-			&lt;section class="right-code"&gt;
-				&lt;div title="Response" class="language-json highlighter-rouge"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="nt"&gt;"title"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"The Hunger Games"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="nt"&gt;"score"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="nt"&gt;"dateAdded"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"12/12/2013"&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="nt"&gt;"title"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"The Hunger Games"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="nt"&gt;"score"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4.7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="nt"&gt;"dateAdded"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"15/12/2013"&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-</code></pre>
+			
+				<section class="right-code">
+					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Hunger Games"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/12/2013"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Hunger Games"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.7</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15/12/2013"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
 </div>
-<p>&lt;/div&gt;</p>
 
 <div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -333,32 +336,30 @@
 </span></code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>			&lt;/section&gt;
-		
-	&lt;/section&gt;
-
-	&lt;section class="doc-content"&gt;
-		&lt;section class="left-docs"&gt;
-			&lt;h3&gt;
-				&lt;a id="apibooks_add"&gt;
-					/books
-					
-						&lt;span class="endpoint post"&gt;&lt;/span&gt;
-					
-				&lt;/a&gt;
-			&lt;/h3&gt;
+				</section>
 			
-				&lt;p class="description"&gt;Create Book&lt;/p&gt;
-			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="apibooks_add">
+						/books
+						
+							<span class="endpoint post"></span>
+						
+					</a>
+				</h3>
+				
+					<p class="description">Create Book</p>
+				
 
-			&lt;h6&gt;Parameters&lt;/h6&gt;&lt;dl&gt;
-</code></pre>
-</div>
-<dt>title</dt>
-<dd>The title for the book</dd>
-<dt>score</dt>
-<dd>The book’s score between 0 and 5</dd>
-<p>&lt;/dl&gt;</p>
+				<h6>Parameters</h6><dl>
+  <dt>title</dt>
+  <dd>The title for the book</dd>
+  <dt>score</dt>
+  <dd>The book’s score between 0 and 5</dd>
+</dl>
 
 <p class="success">The book will automatically be added to your reading list</p>
 
@@ -374,14 +375,18 @@
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		&lt;/section&gt;
+			</section>
 
-		
-			&lt;section class="right-code"&gt;
-				&lt;div title="Response" class="language-json highlighter-rouge"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"title"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"The Book Thief"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"score"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"dateAdded"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"5/1/2015"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-</code></pre>
+			
+				<section class="right-code">
+					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Book Thief"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5/1/2015"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
-<p>&lt;/div&gt;</p>
 
 <div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -390,27 +395,25 @@
 </span></code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>			&lt;/section&gt;
-		
-	&lt;/section&gt;
-
-	&lt;section class="doc-content"&gt;
-		&lt;section class="left-docs"&gt;
-			&lt;h3&gt;
-				&lt;a id="apibooks_get"&gt;
-					/books/:id
-					
-						&lt;span class="endpoint get"&gt;&lt;/span&gt;
-					
-				&lt;/a&gt;
-			&lt;/h3&gt;
+				</section>
 			
-				&lt;p class="description"&gt;Get Book&lt;/p&gt;
-			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="apibooks_get">
+						/books/:id
+						
+							<span class="endpoint get"></span>
+						
+					</a>
+				</h3>
+				
+					<p class="description">Get Book</p>
+				
 
-			&lt;p&gt;Returns a specific book from your collection&lt;/p&gt;
-</code></pre>
-</div>
+				<p>Returns a specific book from your collection</p>
 
 <div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"http://api.myapp.com/books/3"</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">token</span><span class="p">:</span> <span class="s2">"YOUR_APP_KEY"</span><span class="p">,</span>
@@ -420,14 +423,18 @@
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		&lt;/section&gt;
+			</section>
 
-		
-			&lt;section class="right-code"&gt;
-				&lt;div title="Response" class="language-json highlighter-rouge"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"title"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"The Book Thief"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"score"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"dateAdded"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"5/1/2015"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-</code></pre>
+			
+				<section class="right-code">
+					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Book Thief"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5/1/2015"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
-<p>&lt;/div&gt;</p>
 
 <div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -436,32 +443,30 @@
 </span></code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>			&lt;/section&gt;
-		
-	&lt;/section&gt;
-
-	&lt;section class="doc-content"&gt;
-		&lt;section class="left-docs"&gt;
-			&lt;h3&gt;
-				&lt;a id="apibooks_update"&gt;
-					/books/:id
-					
-						&lt;span class="endpoint put"&gt;&lt;/span&gt;
-					
-				&lt;/a&gt;
-			&lt;/h3&gt;
+				</section>
 			
-				&lt;p class="description"&gt;Update Book&lt;/p&gt;
-			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="apibooks_update">
+						/books/:id
+						
+							<span class="endpoint put"></span>
+						
+					</a>
+				</h3>
+				
+					<p class="description">Update Book</p>
+				
 
-			&lt;h6&gt;Parameters&lt;/h6&gt;&lt;dl&gt;
-</code></pre>
-</div>
-<dt>title</dt>
-<dd>The title for the book</dd>
-<dt>score</dt>
-<dd>The book’s score between 0 and 5</dd>
-<p>&lt;/dl&gt;</p>
+				<h6>Parameters</h6><dl>
+  <dt>title</dt>
+  <dd>The title for the book</dd>
+  <dt>score</dt>
+  <dd>The book’s score between 0 and 5</dd>
+</dl>
 
 <p>Update an existing book in your collection.</p>
 
@@ -480,14 +485,18 @@
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		&lt;/section&gt;
+			</section>
 
-		
-			&lt;section class="right-code"&gt;
-				&lt;div title="Response" class="language-json highlighter-rouge"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"title"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"The Book Stealer"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"score"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"dateAdded"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"5/1/2015"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-</code></pre>
+			
+				<section class="right-code">
+					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Book Stealer"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5/1/2015"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
-<p>&lt;/div&gt;</p>
 
 <div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -496,27 +505,25 @@
 </span></code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>			&lt;/section&gt;
-		
-	&lt;/section&gt;
-
-	&lt;section class="doc-content"&gt;
-		&lt;section class="left-docs"&gt;
-			&lt;h3&gt;
-				&lt;a id="apibooks_delete"&gt;
-					/books/:id
-					
-						&lt;span class="endpoint delete"&gt;&lt;/span&gt;
-					
-				&lt;/a&gt;
-			&lt;/h3&gt;
+				</section>
 			
-				&lt;p class="description"&gt;Deletes a book&lt;/p&gt;
-			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="apibooks_delete">
+						/books/:id
+						
+							<span class="endpoint delete"></span>
+						
+					</a>
+				</h3>
+				
+					<p class="description">Deletes a book</p>
+				
 
-			&lt;p&gt;Deletes a book in your collection.&lt;/p&gt;
-</code></pre>
-</div>
+				<p>Deletes a book in your collection.</p>
 
 <div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
   <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"http://api.myapp.com/books/3"</span><span class="p">,</span>
@@ -531,14 +538,16 @@
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		&lt;/section&gt;
+			</section>
 
-		
-			&lt;section class="right-code"&gt;
-				&lt;div title="Response" class="language-json highlighter-rouge"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nt"&gt;"status"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"deleted"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-</code></pre>
+			
+				<section class="right-code">
+					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
-<p>&lt;/div&gt;</p>
 
 <div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -547,11 +556,10 @@
 </span></code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>			&lt;/section&gt;
-		
-	&lt;/section&gt;
-</code></pre>
-</div>
+				</section>
+			
+		</section>
+	
 
 
 		</div>

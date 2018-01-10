@@ -198,7 +198,7 @@ h3 .endpoint {
     content: "POST"; }
 
 .main {
-  margin: 0 0 0 210px;
+  margin: 0 0 0 270px;
   border-left: 1px solid #eee; }
   .main h6 {
     font-size: 1.01em;
@@ -236,27 +236,9 @@ hr {
 .doc-content {
   border: 0;
   border-bottom: 1px solid transparent;
-  border-image: linear-gradient(to right, #eee 0%, #eee 60%, #333333 60%);
-  -moz-border-image: -moz-linear-gradient(left, #eee 0%, #eee 60%, #333333 60%);
-  -webkit-border-image: -webkit-linear-gradient(left, #eee 0%, #eee 60%, #333333 60%);
-  border-image-slice: 1;
+  border-color: #eee;
   padding: 30px 0;
-  background: #ffffff;
-  /* Old browsers */
-  background: -moz-linear-gradient(left, #ffffff 0%, #ffffff 60%, #232323 60%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #ffffff), color-stop(60%, #ffffff), color-stop(60%, #232323));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #ffffff 0%, #ffffff 60%, #232323 60%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, #ffffff 0%, #ffffff 60%, #232323 60%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, #ffffff 0%, #ffffff 60%, #232323 60%);
-  /* IE10+ */
-  background: linear-gradient(to right, #ffffff 0%, #ffffff 60%, #232323 60%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#232323',GradientType=1 );
-  /* IE6-9 */ }
+  background-color: #ffffff; }
 
 .doc-content:after {
   visibility: hidden;
@@ -269,7 +251,7 @@ hr {
   border: 0; }
 
 .left-docs {
-  width: 60%;
+  width: 100%;
   float: left;
   padding: 0 50px;
   -webkit-box-sizing: border-box;
@@ -285,7 +267,7 @@ hr {
     padding: 10px; }
 
 .right-code {
-  width: 40%;
+  width: 0%;
   float: left;
   padding: 0 50px;
   -webkit-box-sizing: border-box;
@@ -368,6 +350,7 @@ header {
     background-color: #35d69b;
     color: #fff;
     margin: 0;
+    padding-left: 20px;
     font-size: 1.7rem;
     line-height: 0.8;
     letter-spacing: 0;
@@ -384,7 +367,6 @@ header {
       height: 26px;
       margin: 0 18px; }
   header .open-nav {
-    background-image: url(/images/menu.svg);
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -400,7 +382,7 @@ header {
   @media (min-width: 700px) {
     header {
       background-color: transparent;
-      width: 210px;
+      width: 270px;
       right: auto;
       bottom: auto; }
       header .open-nav {

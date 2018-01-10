@@ -7,29 +7,13 @@
 		<link rel="stylesheet" href="/css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="/js/main.js"></script>
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Search - Annopolis</title>
-<meta property="og:title" content="Search" />
-<meta name="description" content="Annotation Server" />
-<meta property="og:description" content="Annotation Server" />
-<link rel="canonical" href="http://localhost:4000/search/" />
-<meta property="og:url" content="http://localhost:4000/search/" />
-<meta property="og:site_name" content="Annopolis" />
-<script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "WebPage",
-"headline": "Search",
-"description": "Annotation Server",
-"url": "http://localhost:4000/search/"}</script>
-<!-- End Jekyll SEO tag -->
-
 
 		
 	</head>
 	<body>
 		<header>
 			<h1>
-				<a href="/"><img src="/images/logo.svg" height="40" alt="Annopolis logo"></a>
+			  Annopolis
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 
@@ -57,15 +41,15 @@
 						</li>
 					
 						<li>
-							<a href="/#documentationauthentication">
-								Authentication
+							<a href="/#documentationannotation">
+								Annotation
 								
 							</a>
 						</li>
 					
 						<li>
-							<a href="/#documentationerrors">
-								Errors
+							<a href="/#documentationauthentication">
+								Authentication
 								
 							</a>
 						</li>
@@ -81,39 +65,56 @@
 					
 					
 						<li>
-							<a href="/#apibooks_list">
-								/books
+							<a href="/#apiannotations_list">
+								/getAnnotationsViaList
 								<span class="endpoint get"></span>
 							</a>
 						</li>
 					
 						<li>
-							<a href="/#apibooks_add">
-								/books
+							<a href="/#apiannotation_create">
+								/annotations
 								<span class="endpoint post"></span>
 							</a>
 						</li>
 					
 						<li>
-							<a href="/#apibooks_get">
-								/books/:id
-								<span class="endpoint get"></span>
-							</a>
-						</li>
-					
-						<li>
-							<a href="/#apibooks_update">
-								/books/:id
+							<a href="/#apiannotation_update">
+								/annotations
 								<span class="endpoint put"></span>
 							</a>
 						</li>
 					
 						<li>
-							<a href="/#apibooks_delete">
-								/books/:id
+							<a href="/#apiannotation_delete">
+								/annotations
 								<span class="endpoint delete"></span>
 							</a>
 						</li>
+					
+						<li>
+							<a href="/#apilayers_get">
+								/layers
+								<span class="endpoint get"></span>
+							</a>
+						</li>
+					
+						<li>
+							<a href="/#apiresequenceList">
+								/resequenceList
+								<span class="endpoint put"></span>
+							</a>
+						</li>
+					
+				</ul>
+			</section>
+		
+	
+		
+			<section>
+				<h6>Rake tasks</h6>
+				<ul>
+					
 					
 				</ul>
 			</section>
@@ -144,14 +145,14 @@
 					
 						
 						
-						"api-books-add": {
-							"id": "api-books-add",
-							"title": "/books",
+						"api-annotation-create": {
+							"id": "api-annotation-create",
+							"title": "/annotations",
 							"category": "api",
-							"description": "Create Book",
+							"description": "Create an annotation",
 		  				"type": "post",
-							"url": "/#apibooks_add",
-							"content": "title\n  The title for the book\n  score\n  The book’s score between 0 and 5\n\n\nThe book will automatically be added to your reading list\n\nAdds a book to your collection.\n\n$.post(\"http://api.myapp.com/books/\", {\n  \"token\": \"YOUR_APP_KEY\",\n  \"title\": \"The Book Thief\",\n  \"score\": 4.3\n}, function(data) {\n  alert(data);\n});"
+							"url": "/#apiannotation_create",
+							"content": "Payload:\n\n {\n  \"layer_id\": \"&lt;Layer ID&gt;\",\n  \"annotation\": \"&lt;See Documentation/Annotation section&gt;\"\n}\n\n\n\nannotation[\"@id\"] is not required because it will be created by the server and included in response."
 						}
 						
 					
@@ -161,14 +162,14 @@
 					
 						,
 						
-						"api-books-delete": {
-							"id": "api-books-delete",
-							"title": "/books/:id",
+						"api-annotation-delete": {
+							"id": "api-annotation-delete",
+							"title": "/annotations",
 							"category": "api",
-							"description": "Deletes a book",
+							"description": "Delete annotation",
 		  				"type": "delete",
-							"url": "/#apibooks_delete",
-							"content": "Deletes a book in your collection.\n\n$.ajax({\n  \"url\": \"http://api.myapp.com/books/3\",\n  \"type\": \"DELETE\",\n  \"data\": {\n    \"token\": \"YOUR_APP_KEY\"\n  },\n  \"success\": function(data) {\n    alert(data);\n  }\n});"
+							"url": "/#apiannotation_delete",
+							"content": "The whole URL of the request is identical to the IIIF style annotation ID, e.g.,\nhttp://annotations.ten-thousand-rooms.yale.edu/annotations/76d24e36-e255-41db-883f-64606c4ff08e"
 						}
 						
 					
@@ -178,54 +179,88 @@
 					
 						,
 						
-						"api-books-get": {
-							"id": "api-books-get",
-							"title": "/books/:id",
+						"api-annotation-update": {
+							"id": "api-annotation-update",
+							"title": "/annotations",
 							"category": "api",
-							"description": "Get Book",
-		  				"type": "get",
-							"url": "/#apibooks_get",
-							"content": "Returns a specific book from your collection\n\n$.get(\"http://api.myapp.com/books/3\", {\n  token: \"YOUR_APP_KEY\",\n}, function(data) {\n  alert(data);\n});"
-						}
-						
-					
-				
-			
-				
-					
-						,
-						
-						"api-books-list": {
-							"id": "api-books-list",
-							"title": "/books",
-							"category": "api",
-							"description": "List all books",
-		  				"type": "get",
-							"url": "/#apibooks_list",
-							"content": "offset\n  Offset the results by this amount\n  limit\n  Limit the number of books returned\n\n\nThis call will return a maximum of 100 books\n\nLists all the photos you have access to. You can paginate by using the parameters listed above.\n\n$.get(\"http://api.myapp.com/books/\", { \"token\": \"YOUR_APP_KEY\"}, function(data) {\n  alert(data);\n});\n\n\n\nr = requests.get(\"http://api.myapp.com/books/\", token=\"YOUR_APP_KEY\")\nprint r.text\n\n\n\nvar request = require(\"request\");\nrequest(\"http://api.myapp.com/books?token=YOUR_APP_KEY\", function (error, response, body) {\n  if (!error &amp;&amp; response.statusCode == 200) {\n    console.log(body);\n  }\n});\n\n\n\ncurl http://sampleapi.readme.com/orders?key=YOUR_APP_KEY"
-						}
-						
-					
-				
-			
-				
-					
-						,
-						
-						"api-books-update": {
-							"id": "api-books-update",
-							"title": "/books/:id",
-							"category": "api",
-							"description": "Update Book",
+							"description": "Update annotation",
 		  				"type": "put",
-							"url": "/#apibooks_update",
-							"content": "title\n  The title for the book\n  score\n  The book’s score between 0 and 5\n\n\nUpdate an existing book in your collection.\n\n$.ajax({\n  \"url\": \"http://api.myapp.com/books/3\",\n  \"type\": \"PUT\",\n  \"data\": {\n    \"token\": \"YOUR_APP_KEY\",\n    \"score\": 5.0,\n    \"title\": \"The Book Stealer\"\n  },\n  \"success\": function(data) {\n    alert(data);\n  }\n});"
+							"url": "/#apiannotation_update",
+							"content": "Payload:\n\n {\n  \"layer_id\": [ \"&lt;Layer ID&gt;\" ],\n  \"annotation\": \"&lt;See Documentation/Annotation section&gt;\"\n}"
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"api-annotations-list": {
+							"id": "api-annotations-list",
+							"title": "/getAnnotationsViaList",
+							"category": "api",
+							"description": "Get annotations on the canvas",
+		  				"type": "get",
+							"url": "/#apiannotations_list",
+							"content": "canvas_id\n  ID of canvas\ne.g. http://example.org/iiif/canvas/1\n(required)\n\n\nReturns all annotations (along with the IDs of the layers to which they belong)\nthat are associated with the canvas transitively,\ni.e., recursively including annotations that target those annotations, thus indirectly targeting the canvas.\n\n[\n  {\n    \"layer_id\" : \"&lt;Layer ID&gt;\",\n    \"annotation\": \"&lt;See Documentation/Annotation section&gt;\"\n  },\n  ...\n]\n\n\n\njQuery.ajax({\n  url: \"https://mirador-annotations-lotb-stg.herokuapp.com/getAnnotationsViaList?canvas_id=http%3A%2F%2Fmanifests.ydc2.yale.edu%2FLOTB%2Fcanvas%2Fpanel_01\",\n  type: 'GET',\n  dataType: 'json',\n  contentType: 'application/json; charset=utf-8',\n  success: (data, textStatus, jqXHR) =&gt; {\n    console.log('Success', data);\n  },\n  error: (jqXHR, textStatus, errorThrown) =&gt; {\n    console.log('Error', jqXHR);\n  }\n});"
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"api-layers-get": {
+							"id": "api-layers-get",
+							"title": "/layers",
+							"category": "api",
+							"description": "Get annotation layers",
+		  				"type": "get",
+							"url": "/#apilayers_get",
+							"content": "group_id\n  Group ID of current user. \nWhen specified, returns list of layers that are defined for the group (or project).\n(optional - currently used for Ten Thousand Rooms only.)\n\n\n[\n  {\n    \"@context\": \"http://iiif.io/api/presentation/2/context.json\",\n    \"@id\": \"http://manifest.tenthousandrooms.yale.edu/layers/16\",\n    \"@type\": \"sc:Layer\",\n    \"label\": \"Transcription\"\n  },\n  ...\n]"
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"api-resequencelist": {
+							"id": "api-resequencelist",
+							"title": "/resequenceList",
+							"category": "api",
+							"description": "Re-order annotations in a list",
+		  				"type": "put",
+							"url": "/#apiresequenceList",
+							"content": "Payload:\n\n {\n  \"canvas_id\": \"&lt;Canvas ID&gt;\",\n  \"layer_id\": \"&lt;Layer ID&gt;\",\n  \"annotation_ids\": [ \"&lt;AnnotationID&gt;\", ... ]\n}"
 						}
 						
 					
 				
 			
 		
+			
+				
+					
+						,
+						
+						"documentation-annotation": {
+							"id": "documentation-annotation",
+							"title": "Annotation",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationannotation",
+							"content": "Annotations returned by the API either by themselves or embedded in a parent object,\nshould be in the following format.\n\nThe annotation server tries to keep output format close to the format of Mirador-created annotations. In the examples below,\nthe “Canonical” tab shows the format from the current version of Mirador. The “old” format is still supported as of Mirador v2.6.\n\nThe main difference is the “on” field. In the new format, “on” is an array, and the selector is of type “oa:Choice” and contains both rectagular boundary and the SVG shape. The old format has “on” as a single object and selector doesn’t contain the rectangular boundary.\n\n{\n  \"@id\": \"http://annotations.ten-thousand-rooms.yale.edu/annotations/e8a459bb-119c-4f46-87a3-93edc2cd22c1\",\n  \"@type\": \"oa:Annotation\",\n  \"@context\": \"http://iiif.io/api/presentation/2/context.json\",\n  \"resource\": [\n    {\n      \"@type\": \"dctypes:Text\",\n      \"format\": \"text/html\",\n      \"chars\": \"&lt;p&gt;Test #1&lt;/p&gt;\"\n    },\n    {\n      \"@type\": \"oa:Tag\",\n      \"chars\": \"mytag\"\n    }\n  ],\n  \"within\": [\n    \"http://annotations.ten-thousand-rooms.yale.edu/lists/http://manifest.tenthousandrooms.yale.edu/layers/16_http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116\"\n  ],\n  \"motivation\": [\n    \"oa:commenting\"\n  ],\n  \"on\": [\n    {\n      \"@type\": \"oa:SpecificResource\",\n      \"full\": \"http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116\",\n      \"selector\": {\n        \"@type\": \"oa:Choice\",\n        \"default\": {\n          \"@type\": \"oa:FragmentSelector\",\n          \"value\": \"xywh=54,248,179,219\"\n        },\n        \"item\": {\n          \"@type\": \"oa:SvgSelector\",\n          \"value\": \"&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;&lt;path xmlns=\\\"http://www.w3.org/2000/svg\\\" d=\\\"M53.93942,248.15395h89.65346v0h89.65346v109.58331v109.58331h-89.65346h-89.65346v-109.58331z\\\" data-paper-data=\\\"{&amp;quot;strokeWidth&amp;quot;:1,&amp;quot;rotation&amp;quot;:0,&amp;quot;deleteIcon&amp;quot;:null,&amp;quot;rotationIcon&amp;quot;:null,&amp;quot;group&amp;quot;:null,&amp;quot;editable&amp;quot;:true,&amp;quot;annotation&amp;quot;:null}\\\" id=\\\"rectangle_f95e7e02-7a2b-495e-8dc4-d47f1c0fba9d\\\" fill-opacity=\\\"0\\\" fill=\\\"#00bfff\\\" fill-rule=\\\"nonzero\\\" stroke=\\\"#00bfff\\\" stroke-width=\\\"1\\\" stroke-linecap=\\\"butt\\\" stroke-linejoin=\\\"miter\\\" stroke-miterlimit=\\\"10\\\" stroke-dasharray=\\\"\\\" stroke-dashoffset=\\\"0\\\" font-family=\\\"none\\\" font-weight=\\\"none\\\" font-size=\\\"none\\\" text-anchor=\\\"none\\\" style=\\\"mix-blend-mode: normal\\\"/&gt;&lt;/svg&gt;\"\n        }\n      },\n      \"within\": {\n        \"@id\": \"http://manifest.tenthousandrooms.yale.edu/node/311/manifest\",\n        \"@type\": \"sc:Manifest\"\n      }\n    }\n  ],\n  \"layerId\": \"http://manifest.tenthousandrooms.yale.edu/layers/16\"\n}\n\n\n\n{\n  \"@id\": \"http://annotations.ten-thousand-rooms.yale.edu/annotations/215bc9b4-ca41-4467-a823-4440c420eb8e\",\n  \"@type\": \"oa:annotation\",\n  \"@context\": \"http://iiif.io/api/presentation/2/context.json\",\n  \"resource\": [\n    {\n      \"@type\": \"dctypes:Text\",\n      \"format\": \"text/html\",\n      \"chars\": \"&lt;p&gt;《孔子集語》&amp;nbsp;&lt;/p&gt;\"\n    }\n  ],\n  \"within\": [\n    \"http://annotations.ten-thousand-rooms.yale.edu/lists/http://manifest.tenthousandrooms.yale.edu/layers/16_http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116\",\n    \"http://annotations.tenkr.yale.edu/annotations/lists/http://ten-thousand-rooms.herokuapp.com/layers/5557c1c3-53d5-4af5-bfc8-990008826fcc_http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116\"\n  ],\n  \"motivation\": [\n    \"oa:commenting\"\n  ],\n  \"on\": {\n    \"@type\": \"oa:SpecificResource\",\n    \"full\": \"http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116\",\n    \"selector\": {\n      \"@type\": \"oa:SvgSelector\",\n      \"value\": \"&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;&lt;path xmlns=\\\"http://www.w3.org/2000/svg\\\" d=\\\"M292.21935,122.21566l109.99409,0l109.99409,0l0,476.64106l0,476.64106l-109.99409,0l-109.99409,0l0,-476.64106z\\\" data-paper-data=\\\"{&amp;quot;rotation&amp;quot;:0,&amp;quot;annotation&amp;quot;:null}\\\" id=\\\"rectangle_647a69af-6014-412d-8c28-6e561ec82dde\\\" fill-opacity=\\\"0\\\" fill=\\\"#00bfff\\\" stroke=\\\"#00bfff\\\" stroke-width=\\\"1.74594\\\" stroke-linecap=\\\"butt\\\" stroke-linejoin=\\\"miter\\\" stroke-miterlimit=\\\"10\\\" stroke-dasharray=\\\"\\\" stroke-dashoffset=\\\"0\\\" font-family=\\\"sans-serif\\\" font-weight=\\\"normal\\\" font-size=\\\"12\\\" text-anchor=\\\"start\\\" mix-blend-mode=\\\"normal\\\"/&gt;&lt;/svg&gt;\"\n    }\n  },\n  \"layerId\": \"http://manifest.tenthousandrooms.yale.edu/layers/16\"\n}"
+						}
+						
+					
+				
 			
 				
 					
@@ -238,24 +273,7 @@
 							"description": "",
 		  				"type": "",
 							"url": "/#documentationauthentication",
-							"content": "You need to be authenticated for all API requests. You can generate an API key in your developer dashboard.\n\nAdd the API key to all requests as a GET parameter.\n\nNothing will work unless you include this API key"
-						}
-						
-					
-				
-			
-				
-					
-						,
-						
-						"documentation-errors": {
-							"id": "documentation-errors",
-							"title": "Errors",
-							"category": "documentation",
-							"description": "",
-		  				"type": "",
-							"url": "/#documentationerrors",
-							"content": "Code\n      Name\n      Description\n    \n  \n  \n    \n      200\n      OK\n      Success\n    \n    \n      201\n      Created\n      Creation Successful\n    \n    \n      400\n      Bad Request\n      We could not process that action\n    \n    \n      403\n      Forbidden\n      We couldn’t authenticate you\n    \n  \n\n\nAll errors will return JSON in the following format:\n\n{\n  \"error\": true,\n  \"message\": \"error message here\"\n}"
+							"content": "payload"
 						}
 						
 					
@@ -272,11 +290,13 @@
 							"description": "",
 		  				"type": "",
 							"url": "/#documentationgetting_started",
-							"content": "Welcome to our API.\n\nThis API document is designed for those interested in developing for our platform.\n\nThis API is still under development and will evolve.\n\nYou’ll succeed if you do this.\n\nHere’s some useful information.\n\nSomething may not happen if you try and do this.\n\nSomething bad will happen if you do this."
+							"content": ""
 						}
 						
 					
 				
+			
+		
 			
 		
 			

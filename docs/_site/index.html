@@ -7,30 +7,13 @@
 		<link rel="stylesheet" href="/css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="/js/main.js"></script>
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>API Docs - Annopolis</title>
-<meta property="og:title" content="API Docs" />
-<meta name="description" content="Annotation Server" />
-<meta property="og:description" content="Annotation Server" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Annopolis" />
-<script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "WebSite",
-"name": "Annopolis",
-"headline": "API Docs",
-"description": "Annotation Server",
-"url": "http://localhost:4000/"}</script>
-<!-- End Jekyll SEO tag -->
-
 
 		
 	</head>
 	<body>
 		<header>
 			<h1>
-				<a href="/"><img src="/images/logo.svg" height="40" alt="Annopolis logo"></a>
+			  Annopolis
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 
@@ -58,15 +41,15 @@
 						</li>
 					
 						<li>
-							<a href="#documentationauthentication">
-								Authentication
+							<a href="#documentationannotation">
+								Annotation
 								
 							</a>
 						</li>
 					
 						<li>
-							<a href="#documentationerrors">
-								Errors
+							<a href="#documentationauthentication">
+								Authentication
 								
 							</a>
 						</li>
@@ -82,39 +65,56 @@
 					
 					
 						<li>
-							<a href="#apibooks_list">
-								/books
+							<a href="#apiannotations_list">
+								/getAnnotationsViaList
 								<span class="endpoint get"></span>
 							</a>
 						</li>
 					
 						<li>
-							<a href="#apibooks_add">
-								/books
+							<a href="#apiannotation_create">
+								/annotations
 								<span class="endpoint post"></span>
 							</a>
 						</li>
 					
 						<li>
-							<a href="#apibooks_get">
-								/books/:id
-								<span class="endpoint get"></span>
-							</a>
-						</li>
-					
-						<li>
-							<a href="#apibooks_update">
-								/books/:id
+							<a href="#apiannotation_update">
+								/annotations
 								<span class="endpoint put"></span>
 							</a>
 						</li>
 					
 						<li>
-							<a href="#apibooks_delete">
-								/books/:id
+							<a href="#apiannotation_delete">
+								/annotations
 								<span class="endpoint delete"></span>
 							</a>
 						</li>
+					
+						<li>
+							<a href="#apilayers_get">
+								/layers
+								<span class="endpoint get"></span>
+							</a>
+						</li>
+					
+						<li>
+							<a href="#apiresequenceList">
+								/resequenceList
+								<span class="endpoint put"></span>
+							</a>
+						</li>
+					
+				</ul>
+			</section>
+		
+	
+		
+			<section>
+				<h6>Rake tasks</h6>
+				<ul>
+					
 					
 				</ul>
 			</section>
@@ -147,19 +147,109 @@
 				</h3>
 				
 
-				<p>Welcome to our API.</p>
+				
 
-<p>This API document is designed for those interested in developing for our platform.</p>
+			</section>
 
-<p>This API is still under development and will evolve.</p>
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationannotation">
+						Annotation
+						
+					</a>
+				</h3>
+				
 
-<p class="success">You’ll succeed if you do this.</p>
+				<p>Annotations returned by the API either by themselves or embedded in a parent object,
+should be in the following format.</p>
 
-<p class="info">Here’s some useful information.</p>
+<p>The annotation server tries to keep output format close to the format of Mirador-created annotations. In the examples below,
+the “Canonical” tab shows the format from the current version of Mirador. The “old” format is still supported as of Mirador v2.6.</p>
 
-<p class="warning">Something may not happen if you try and do this.</p>
+<p>The main difference is the “on” field. In the new format, “on” is an array, and the selector is of type “oa:Choice” and contains both rectagular boundary and the SVG shape. The old format has “on” as a single object and selector doesn’t contain the rectangular boundary.</p>
 
-<p class="error">Something bad will happen if you do this.</p>
+<div title="Canonical" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://annotations.ten-thousand-rooms.yale.edu/annotations/e8a459bb-119c-4f46-87a3-93edc2cd22c1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:Annotation"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://iiif.io/api/presentation/2/context.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dctypes:Text"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/html"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"chars"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Test #1&lt;/p&gt;"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:Tag"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"chars"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mytag"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"within"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"http://annotations.ten-thousand-rooms.yale.edu/lists/http://manifest.tenthousandrooms.yale.edu/layers/16_http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"motivation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"oa:commenting"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"on"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:SpecificResource"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"selector"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:Choice"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:FragmentSelector"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xywh=54,248,179,219"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:SvgSelector"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;&lt;path xmlns=\"http://www.w3.org/2000/svg\" d=\"M53.93942,248.15395h89.65346v0h89.65346v109.58331v109.58331h-89.65346h-89.65346v-109.58331z\" data-paper-data=\"{&amp;quot;strokeWidth&amp;quot;:1,&amp;quot;rotation&amp;quot;:0,&amp;quot;deleteIcon&amp;quot;:null,&amp;quot;rotationIcon&amp;quot;:null,&amp;quot;group&amp;quot;:null,&amp;quot;editable&amp;quot;:true,&amp;quot;annotation&amp;quot;:null}\" id=\"rectangle_f95e7e02-7a2b-495e-8dc4-d47f1c0fba9d\" fill-opacity=\"0\" fill=\"#00bfff\" fill-rule=\"nonzero\" stroke=\"#00bfff\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\"/&gt;&lt;/svg&gt;"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"within"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://manifest.tenthousandrooms.yale.edu/node/311/manifest"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sc:Manifest"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"layerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://manifest.tenthousandrooms.yale.edu/layers/16"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div title="Old" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://annotations.ten-thousand-rooms.yale.edu/annotations/215bc9b4-ca41-4467-a823-4440c420eb8e"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:annotation"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://iiif.io/api/presentation/2/context.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dctypes:Text"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/html"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"chars"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;《孔子集語》&amp;nbsp;&lt;/p&gt;"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"within"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"http://annotations.ten-thousand-rooms.yale.edu/lists/http://manifest.tenthousandrooms.yale.edu/layers/16_http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"http://annotations.tenkr.yale.edu/annotations/lists/http://ten-thousand-rooms.herokuapp.com/layers/5557c1c3-53d5-4af5-bfc8-990008826fcc_http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"motivation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"oa:commenting"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"on"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:SpecificResource"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://manifest.tenthousandrooms.yale.edu/node/311/canvas/14116"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"selector"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oa:SvgSelector"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;&lt;path xmlns=\"http://www.w3.org/2000/svg\" d=\"M292.21935,122.21566l109.99409,0l109.99409,0l0,476.64106l0,476.64106l-109.99409,0l-109.99409,0l0,-476.64106z\" data-paper-data=\"{&amp;quot;rotation&amp;quot;:0,&amp;quot;annotation&amp;quot;:null}\" id=\"rectangle_647a69af-6014-412d-8c28-6e561ec82dde\" fill-opacity=\"0\" fill=\"#00bfff\" stroke=\"#00bfff\" stroke-width=\"1.74594\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"sans-serif\" font-weight=\"normal\" font-size=\"12\" text-anchor=\"start\" mix-blend-mode=\"normal\"/&gt;&lt;/svg&gt;"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"layerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://manifest.tenthousandrooms.yale.edu/layers/16"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
 
 			</section>
 
@@ -176,80 +266,7 @@
 				</h3>
 				
 
-				<p>You need to be authenticated for all API requests. You can generate an API key in your developer dashboard.</p>
-
-<p>Add the API key to all requests as a GET parameter.</p>
-
-<p class="error">Nothing will work unless you include this API key</p>
-
-			</section>
-
-			
-				<section class="right-code">
-					<div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"http://api.myapp.com/books/"</span><span class="p">,</span> <span class="p">{</span> <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"YOUR_APP_KEY"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre>
-</div>
-
-<div title="Curl" class="language-bash highlighter-rouge"><pre class="highlight"><code>curl http://api.myapp.com/books?token<span class="o">=</span>YOUR_APP_KEY
-</code></pre>
-</div>
-
-				</section>
-			
-		</section>
-	
-		<section class="doc-content">
-			<section class="left-docs">
-				<h3>
-					<a id="documentationerrors">
-						Errors
-						
-					</a>
-				</h3>
-				
-
-				<table>
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>200</td>
-      <td>OK</td>
-      <td>Success</td>
-    </tr>
-    <tr>
-      <td>201</td>
-      <td>Created</td>
-      <td>Creation Successful</td>
-    </tr>
-    <tr>
-      <td>400</td>
-      <td>Bad Request</td>
-      <td>We could not process that action</td>
-    </tr>
-    <tr>
-      <td>403</td>
-      <td>Forbidden</td>
-      <td>We couldn’t authenticate you</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>All errors will return JSON in the following format:</p>
-
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error message here"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+				<h3 id="payload">payload</h3>
 
 			</section>
 
@@ -262,303 +279,210 @@
 		<section class="doc-content">
 			<section class="left-docs">
 				<h3>
-					<a id="apibooks_list">
-						/books
+					<a id="apiannotations_list">
+						/getAnnotationsViaList
 						
 							<span class="endpoint get"></span>
 						
 					</a>
 				</h3>
 				
-					<p class="description">List all books</p>
+					<p class="description">Get annotations on the canvas</p>
 				
 
 				<h6>Parameters</h6><dl>
-  <dt>offset</dt>
-  <dd>Offset the results by this amount</dd>
-  <dt>limit</dt>
-  <dd>Limit the number of books returned</dd>
+  <dt>canvas_id</dt>
+  <dd>ID of canvas<br />
+e.g. <code class="highlighter-rouge">http://example.org/iiif/canvas/1</code><br />
+(required)</dd>
 </dl>
 
-<p class="info">This call will return a maximum of 100 books</p>
+<p>Returns all annotations (along with the IDs of the layers to which they belong)
+that are associated with the canvas transitively,
+i.e., recursively including annotations that target those annotations, thus indirectly targeting the canvas.</p>
 
-<p>Lists all the photos you have access to. You can paginate by using the parameters listed above.</p>
-
-<div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"http://api.myapp.com/books/"</span><span class="p">,</span> <span class="p">{</span> <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"YOUR_APP_KEY"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre>
+<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"layer_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Layer ID&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"annotation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;See Documentation/Annotation section&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
 </div>
 
-<div title="Python" class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"http://api.myapp.com/books/"</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s">"YOUR_APP_KEY"</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
-</code></pre>
-</div>
-
-<div title="Node.js" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">(</span><span class="s2">"http://api.myapp.com/books?token=YOUR_APP_KEY"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<div title="jQuery example" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">jQuery</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s2">"https://mirador-annotations-lotb-stg.herokuapp.com/getAnnotationsViaList?canvas_id=http%3A%2F%2Fmanifests.ydc2.yale.edu%2FLOTB%2Fcanvas%2Fpanel_01"</span><span class="p">,</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+  <span class="na">contentType</span><span class="p">:</span> <span class="s1">'application/json; charset=utf-8'</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">textStatus</span><span class="p">,</span> <span class="nx">jqXHR</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Success'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="na">error</span><span class="p">:</span> <span class="p">(</span><span class="nx">jqXHR</span><span class="p">,</span> <span class="nx">textStatus</span><span class="p">,</span> <span class="nx">errorThrown</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error'</span><span class="p">,</span> <span class="nx">jqXHR</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</code></pre>
-</div>
-
-<div title="Curl" class="language-bash highlighter-rouge"><pre class="highlight"><code>curl http://sampleapi.readme.com/orders?key<span class="o">=</span>YOUR_APP_KEY
 </code></pre>
 </div>
 
 			</section>
 
 			
-				<section class="right-code">
-					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Hunger Games"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/12/2013"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Hunger Games"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.7</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15/12/2013"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-</div>
-
-<div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid offset"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-				</section>
-			
 		</section>
 	
 		<section class="doc-content">
 			<section class="left-docs">
 				<h3>
-					<a id="apibooks_add">
-						/books
+					<a id="apiannotation_create">
+						/annotations
 						
 							<span class="endpoint post"></span>
 						
 					</a>
 				</h3>
 				
-					<p class="description">Create Book</p>
+					<p class="description">Create an annotation</p>
 				
 
-				<h6>Parameters</h6><dl>
-  <dt>title</dt>
-  <dd>The title for the book</dd>
-  <dt>score</dt>
-  <dd>The book’s score between 0 and 5</dd>
-</dl>
+				<h6 id="payload">Payload:</h6>
 
-<p class="success">The book will automatically be added to your reading list</p>
-
-<p>Adds a book to your collection.</p>
-
-<div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"http://api.myapp.com/books/"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"YOUR_APP_KEY"</span><span class="p">,</span>
-  <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"The Book Thief"</span><span class="p">,</span>
-  <span class="s2">"score"</span><span class="p">:</span> <span class="mf">4.3</span>
-<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"layer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Layer ID&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"annotation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;See Documentation/Annotation section&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
+
+<p class="success"><code class="highlighter-rouge">annotation["@id"]</code> is not required because it will be created by the server and included in response.</p>
 
 			</section>
 
-			
-				<section class="right-code">
-					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Book Thief"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.3</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5/1/2015"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-<div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid score"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-				</section>
 			
 		</section>
 	
 		<section class="doc-content">
 			<section class="left-docs">
 				<h3>
-					<a id="apibooks_get">
-						/books/:id
-						
-							<span class="endpoint get"></span>
-						
-					</a>
-				</h3>
-				
-					<p class="description">Get Book</p>
-				
-
-				<p>Returns a specific book from your collection</p>
-
-<div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"http://api.myapp.com/books/3"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">token</span><span class="p">:</span> <span class="s2">"YOUR_APP_KEY"</span><span class="p">,</span>
-<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre>
-</div>
-
-			</section>
-
-			
-				<section class="right-code">
-					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Book Thief"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.3</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5/1/2015"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-<div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Book doesn't exist"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-				</section>
-			
-		</section>
-	
-		<section class="doc-content">
-			<section class="left-docs">
-				<h3>
-					<a id="apibooks_update">
-						/books/:id
+					<a id="apiannotation_update">
+						/annotations
 						
 							<span class="endpoint put"></span>
 						
 					</a>
 				</h3>
 				
-					<p class="description">Update Book</p>
+					<p class="description">Update annotation</p>
 				
 
-				<h6>Parameters</h6><dl>
-  <dt>title</dt>
-  <dd>The title for the book</dd>
-  <dt>score</dt>
-  <dd>The book’s score between 0 and 5</dd>
-</dl>
+				<h6 id="payload">Payload:</h6>
 
-<p>Update an existing book in your collection.</p>
-
-<div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"http://api.myapp.com/books/3"</span><span class="p">,</span>
-  <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"PUT"</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"YOUR_APP_KEY"</span><span class="p">,</span>
-    <span class="s2">"score"</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
-    <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"The Book Stealer"</span>
-  <span class="p">},</span>
-  <span class="s2">"success"</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"layer_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"&lt;Layer ID&gt;"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"annotation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;See Documentation/Annotation section&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
 
 			</section>
 
-			
-				<section class="right-code">
-					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Book Stealer"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"dateAdded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5/1/2015"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-<div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Book doesn't exist"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
-				</section>
 			
 		</section>
 	
 		<section class="doc-content">
 			<section class="left-docs">
 				<h3>
-					<a id="apibooks_delete">
-						/books/:id
+					<a id="apiannotation_delete">
+						/annotations
 						
 							<span class="endpoint delete"></span>
 						
 					</a>
 				</h3>
 				
-					<p class="description">Deletes a book</p>
+					<p class="description">Delete annotation</p>
 				
 
-				<p>Deletes a book in your collection.</p>
+				<p>The whole URL of the request is identical to the IIIF style annotation ID, e.g.,
+<code class="highlighter-rouge">http://annotations.ten-thousand-rooms.yale.edu/annotations/76d24e36-e255-41db-883f-64606c4ff08e</code></p>
 
-<div title="jQuery" class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"http://api.myapp.com/books/3"</span><span class="p">,</span>
-  <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"DELETE"</span><span class="p">,</span>
-  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"token"</span><span class="p">:</span> <span class="s2">"YOUR_APP_KEY"</span>
-  <span class="p">},</span>
-  <span class="s2">"success"</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre>
+			</section>
+
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="apilayers_get">
+						/layers
+						
+							<span class="endpoint get"></span>
+						
+					</a>
+				</h3>
+				
+					<p class="description">Get annotation layers</p>
+				
+
+				<h6>Parameters</h6><dl>
+  <dt>group_id</dt>
+  <dd>Group ID of current user. <br />
+When specified, returns list of layers that are defined for the group (or project).<br />
+(optional - currently used for Ten Thousand Rooms only.)</dd>
+</dl>
+
+<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://iiif.io/api/presentation/2/context.json"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://manifest.tenthousandrooms.yale.edu/layers/16"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sc:Layer"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transcription"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div title="jQuery example" class="language-javascript highlighter-rouge"><pre class="highlight"><code></code></pre>
 </div>
 
 			</section>
 
 			
-				<section class="right-code">
-					<div title="Response" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deleted"</span><span class="w">
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="apiresequenceList">
+						/resequenceList
+						
+							<span class="endpoint put"></span>
+						
+					</a>
+				</h3>
+				
+					<p class="description">Re-order annotations in a list</p>
+				
+
+				<h6 id="payload">Payload:</h6>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"canvas_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Canvas ID&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"layer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Layer ID&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"annotation_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"&lt;AnnotationID&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
 
-<div title="Error" class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Book doesn't exist"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+			</section>
 
-				</section>
 			
 		</section>
+	
+
+	
 	
 
 

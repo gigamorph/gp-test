@@ -16,9 +16,9 @@ collections:
   api:
     title: APIs
     position: 2
-gems:
-  - jekyll-sitemap
-  - jekyll-seo-tag
+  task:
+    title: Rake tasks
+    position: 3
 
 exclude:
   - readme.md
@@ -34,5 +34,6 @@ defaults:
 types:
   - get
   - put
+  - patch
   - delete
   - post
